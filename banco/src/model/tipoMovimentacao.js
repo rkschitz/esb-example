@@ -3,7 +3,7 @@ const database = require('../config/database');
 class TipoMovimentacao {
     constructor() {
         this.model = database.db.define('tipoMovimentacao', {
-            idCategoriaMovimentacao: {
+            idTipoMovimentacao: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true

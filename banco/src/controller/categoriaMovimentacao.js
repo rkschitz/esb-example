@@ -1,4 +1,4 @@
-const categoriaMovimentacao = require('../model/categoriaMovimentacao');
+const CategoriaMovimentacaoModel = require('../model/categoriaMovimentacao');
 
 class categoriaMovimentacaoController {
     async criarCategoria(categoriaMovimentacao) {
@@ -7,7 +7,7 @@ class categoriaMovimentacaoController {
         ) {
             throw new Error('Categoria é obrigatória');
         }   
-        const categoria = await categoriaMovimentacao.create({ categoriaMovimentacao });
+        const categoria = await CategoriaMovimentacaoModel.create({ categoriaMovimentacao });
 
         return categoria;
     }
@@ -17,7 +17,7 @@ class categoriaMovimentacaoController {
             throw new Error('Id é obrigatório');
         }
 
-        const categoria = await categoriaMovimentacao.findByPk(id);
+        const categoria = await CategoriaMovimentacaoModel.findByPk(id);
 
         if (!categoria) {
             throw new Error('Categoria não encontrado');
@@ -54,7 +54,7 @@ class categoriaMovimentacaoController {
     }
 
     async listarCategorias() {
-        return categoriaMovimentacao.findAll();
+        return CategoriaMovimentacaoModel.findAll();
     }
 }
 

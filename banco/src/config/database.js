@@ -7,10 +7,10 @@ class Database {
 
     init() {
         this.db = new Sequelize(
-            'banco',
+            'bancoruhan',
             'root',
             '',
-            { host: 'localhost', dialect: 'mysql' }
+            { host: 'localhost', dialect: 'mysql', define: { timestamps: true, freezeTableName: true } }
         )
     }
 }

@@ -1,4 +1,4 @@
-const subCategoriaMovimentacao = require('../model/subCategoriaMovimentacao');
+const subCategoriaMovimentacaoModel = require('../model/subCategoriaMovimentacao');
 
 class subCategoriaMovimentacaoController {
     async criarSubCategoria(subCategoriaMovimentacao) {
@@ -7,7 +7,7 @@ class subCategoriaMovimentacaoController {
         ) {
             throw new Error('SubCategoria é obrigatória');
         }   
-        const subCategoriaObj = await subCategoriaMovimentacao.create({ subCategoriaMovimentacao });
+        const subCategoriaObj = await subCategoriaMovimentacaoModel.create({ subCategoriaMovimentacao });
 
         return subCategoriaObj;
     }
@@ -17,7 +17,7 @@ class subCategoriaMovimentacaoController {
             throw new Error('Id é obrigatório');
         }
 
-        const subCategoriaObj = await subCategoriaMovimentacao.findByPk(id);
+        const subCategoriaObj = await subCategoriaMovimentacaoModel.findByPk(id);
 
         if (!subCategoriaObj) {
             throw new Error('SubCategoria não encontrado');
@@ -54,7 +54,7 @@ class subCategoriaMovimentacaoController {
     }
 
     async listarSubCategorias() {
-        return subCategoriaMovimentacao.findAll();
+        return subCategoriaMovimentacaoModel.findAll();
     }
 }
 

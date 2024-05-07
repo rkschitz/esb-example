@@ -4,10 +4,10 @@ const controllerMovimentacao = require('../controller/movimentacao');
 class SubCategoriaMovimentacaoApi {
 
     async criarSubCategoria(req, res) {
-        const categoriaMovimentacao = req.body.categoriaMovimentacao;
+        const subCategoria = req.body.subCategoria;
 
         try {
-            const categoria = await controller.criarSubCategoria(categoriaMovimentacao);
+            const categoria = await controller.criarSubCategoria(subCategoria);
             return res.status(201).send(categoria);
         } catch (error) {
             return res.status(400).send({ error: error.message })

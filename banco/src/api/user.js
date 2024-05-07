@@ -1,5 +1,4 @@
 const controller = require('../controller/user');
-const controllerPost = require('../controller/post');
 
 class UserApi {
     async criarUsuario(req, res) {
@@ -30,12 +29,6 @@ class UserApi {
     async deletarUsuario(req, res) {
         const { id } = req.params;
     
-        const autorPost = await controllerPost.buscarPorAutor(Number(id))
-
-        if(autorPost.length > 0) {
-            return res.status(400).send({ error: 'Usuário possui posts cadastrados' })
-        }
-
         try {
             await controller.deletarUsuario(Number(id));
             return res.status(204).send({ message: 'Usuário deletado com sucesso'});
