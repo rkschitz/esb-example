@@ -1,9 +1,13 @@
 const express = require('express');
 const userApi = require('./api/user');
+
 const postApi = require('./api/post')
 const database = require('./config/database');
 
 const userRoutes = require('./routes/userRoutes');
+const categoriaMovimentacaoRoutes = require('./routes/categoriaMovimentacaoRoutes');
+const movimentacaoRoutes = require('./routes/movimentacaoRoutes')
+const subCategoriaMovimentacaoRoutes = require('./routes/subCategoriaMovimentacaoRoutes')
 
 console.log('Starting server....')
 const app = express()
@@ -18,15 +22,12 @@ app.post('/users', userApi.criarUsuario);
 // Aplica a validação do token para as rotas abaixo
 app.use(userApi.validarToken);
 app.use(userRoutes);
+app.use(movimentacaoRoutes)
+app.use(categoriaMovimentacaoRoutes)
+app.use(subCategoriaMovimentacaoRoutes)
 
-app.get('/posts', postApi.listarPosts);
-app.post('/posts', postApi.criarPost)
-app.put('/posts/:id', postApi.alterarPost);
-app.delete('/posts/:id', postApi.deletarPost);
-app.get('/posts/:id', postApi.buscarPorId);
-app.get('/posts/autor/:id', postApi.buscarPorAutor);
 
-database.db.sync({ force: false })
+database.db.sync({ force: true })
     .then(() => {
         app.listen(3000, () => {
             console.log('Server is running on port 3000')

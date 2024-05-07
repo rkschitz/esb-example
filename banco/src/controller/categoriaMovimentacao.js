@@ -1,4 +1,4 @@
-const categoriaMovimentacao = require('../models/categoriaMovimentacao');
+const categoriaMovimentacao = require('../model/categoriaMovimentacao');
 
 class categoriaMovimentacaoController {
     async criarCategoria(categoriaMovimentacao) {

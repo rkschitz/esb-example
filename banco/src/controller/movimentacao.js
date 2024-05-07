@@ -1,4 +1,4 @@
-const MovimentacaoModel = require('../models/movimentacao');
+const MovimentacaoModel = require('../model/movimentacao');
 
 class MovimentacaoController {
     async criarMovimentacao(movimentacao) {

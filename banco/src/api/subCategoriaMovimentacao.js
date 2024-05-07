@@ -1,51 +1,51 @@
-const controller = require('../controller/categoriaMovimentacao');
+const controller = require('../controller/subCategoriaMovimentacao');
 const controllerMovimentacao = require('../controller/movimentacao');
 
-class CategoriaMovimentacaoApi {
+class SubCategoriaMovimentacaoApi {
 
-    async criarCategoria(req, res) {
+    async criarSubCategoria(req, res) {
         const categoriaMovimentacao = req.body.categoriaMovimentacao;
 
         try {
-            const categoria = await controller.criarCategoria(categoriaMovimentacao);
+            const categoria = await controller.criarSubCategoria(categoriaMovimentacao);
             return res.status(201).send(categoria);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 
-    async alterarCategoria(req, res) {
+    async alterarSubCategoria(req, res) {
         const { id } = req.params;
         const categoriaMovimentacao = req.body.categoriaMovimentacao;
 
         try {
-            const categoria = await controller.alterarCategoria(Number(id), categoriaMovimentacao);
+            const categoria = await controller.alterarSubCategoria(Number(id), categoriaMovimentacao);
             return res.status(200).send(categoria);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 
-    async deletarCategoria(req, res) {
+    async deletarSubCategoria(req, res) {
         const { id } = req.params;
     
-        const movimentacao = await controllerMovimentacao.buscarPorCategoria(Number(id))
+        const movimentacao = await controllerMovimentacao.buscarPorSubCategoria(Number(id))
 
         if(movimentacao.length > 0) {
-            return res.status(400).send({ error: 'Categoria possui movimentações cadastradas' })
+            return res.status(400).send({ error: 'SubCategoria possui movimentações cadastradas' })
         }
 
         try {
-            await controller.deletarCategoria(Number(id));
-            return res.status(204).send({ message: 'Categoria deletada com sucesso'});
+            await controller.deletarSubCategoria(Number(id));
+            return res.status(204).send({ message: 'SubCategoria deletada com sucesso'});
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 
-    async listarCategoria(req, res) {
+    async listarSubCategoria(req, res) {
         try {
-            const categorias = await controller.listarCategorias();
+            const categorias = await controller.listarSubCategorias();
             return res.status(200).send(categorias);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -64,4 +64,4 @@ class CategoriaMovimentacaoApi {
     }
 }
 
-module.exports = new CategoriaMovimentacaoApi();
+module.exports = new SubCategoriaMovimentacaoApi();

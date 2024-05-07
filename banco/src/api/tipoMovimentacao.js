@@ -1,32 +1,32 @@
-const controller = require('../controller/categoriaMovimentacao');
+const controller = require('../controller/tipoMovimentacao');
 const controllerMovimentacao = require('../controller/movimentacao');
 
-class CategoriaMovimentacaoApi {
+class TipoMovimentacaoApi {
 
-    async criarCategoria(req, res) {
-        const categoriaMovimentacao = req.body.categoriaMovimentacao;
+    async criarTipoMovimentacao(req, res) {
+        const tipoMovimentacao = req.body.tipoMovimentacao;
 
         try {
-            const categoria = await controller.criarCategoria(categoriaMovimentacao);
-            return res.status(201).send(categoria);
+            const movimentacaoObj = await controller.criarTipoMovimentacao(tipoMovimentacao);
+            return res.status(201).send(movimentacaoObj);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 
-    async alterarCategoria(req, res) {
+    async alterarTipoMovimentacao(req, res) {
         const { id } = req.params;
-        const categoriaMovimentacao = req.body.categoriaMovimentacao;
+        const tipoMovimentacao = req.body.tipoMovimentacao;
 
         try {
-            const categoria = await controller.alterarCategoria(Number(id), categoriaMovimentacao);
-            return res.status(200).send(categoria);
+            const movimentacaoObj = await controller.alterarTipoMovimentacao(Number(id), tipoMovimentacao);
+            return res.status(200).send(movimentacaoObj);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 
-    async deletarCategoria(req, res) {
+    async deletarTipoMovimentacao(req, res) {
         const { id } = req.params;
     
         const movimentacao = await controllerMovimentacao.buscarPorCategoria(Number(id))
@@ -43,10 +43,10 @@ class CategoriaMovimentacaoApi {
         }
     }
 
-    async listarCategoria(req, res) {
+    async listarTipoMovimentacoes(req, res) {
         try {
-            const categorias = await controller.listarCategorias();
-            return res.status(200).send(categorias);
+            const movimentacaoObjs = await controller.listarTipoMovimentacoes();
+            return res.status(200).send(movimentacaoObjs);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
@@ -56,12 +56,12 @@ class CategoriaMovimentacaoApi {
         const { id } = req.params;
 
         try {
-            const categoria = await controller.buscarPorId(Number(id));
-            return res.status(200).send(categoria);
+            const movimentacaoObj = await controller.buscarPorId(Number(id));
+            return res.status(200).send(movimentacaoObj);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
 }
 
-module.exports = new CategoriaMovimentacaoApi();
+module.exports = new TipoMovimentacaoApi();
