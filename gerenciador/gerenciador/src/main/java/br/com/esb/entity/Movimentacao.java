@@ -29,6 +29,10 @@ public class Movimentacao {
     @Column(name = "categoria")
     private String categoria;
 
+    @Column(name = "sub_categoria")
+    private String subCategoria;
+
+
     @Column(name = "cpf_usuario")
     private String cpfUsuario;
 
